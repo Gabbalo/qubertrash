@@ -8,7 +8,7 @@
 # Beispiel: PREFIX=trash
 # Beispiel: SUFFIX=@8300111.de
 PREFIX=
-SUFFIX=
+SUFFIX=@domain.tdl
 
 # nehme Parameter entgegen
 TOMAIL=$1
@@ -24,6 +24,10 @@ let INTERVALSECONDS=$INTERVAL*60*60
 # erzeuge neue .qmail Datei
 echo "|~/bin/qdated/parse_trashmail.sh $NEWTIMESTAMP $INTERVALSECONDS" > ~/$FILENAME
 echo $TOMAIL >> ~/$FILENAME
+
+# erzeuge neue .current_mail Datei
+INCFILENAME=.current_mail
+echo "$PREFIX$NEWTIMESTAMP$SUFFIX" > ~/$INCFILENAME
 
 # Ausgabe der angelegten E-Mail-Adresse
 echo $PREFIX-$NEWTIMESTAMP$SUFFIX
